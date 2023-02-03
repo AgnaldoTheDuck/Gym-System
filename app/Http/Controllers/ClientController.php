@@ -70,7 +70,8 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $client = Client::find($id);
+        $db = new PDO("mysql:host=localhost;port=3307;dbname=db_gym", "root", "usbw");
+        $client = $db->query("select * from clients where id = $id");
         return view('clients.show',['client'=>$client]);
     }
 
