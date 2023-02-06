@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
-use PDO;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
@@ -19,8 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $db = new PDO("mysql:host=localhost;port=3307;dbname=db_gym", "root", "usbw");
-        $clients = $db->query("select * from clients");
+        $clients = DB::select('select * from clients');
         return view('clients.index',['clients'=>$clients]);
     }
 
@@ -49,8 +48,6 @@ class ClientController extends Controller
             'height'=>'required',
             'age'=>'required',
         ]);
-
-        $db = new PDO("mysql:host=localhost;port=3307;dbname=db_gym", "root", "usbw");
         
         Client::create([
             'name'=>$request->name,
@@ -70,8 +67,7 @@ class ClientController extends Controller
      */
     public function show($id)
     {
-        $db = new PDO("mysql:host=localhost;port=3307;dbname=db_gym", "root", "usbw");
-        $client = $db->query("select * from clients where id = $id");
+        $client = DB::select('select * from clients where id = ?',[$id]);
         return view('clients.show',['client'=>$client]);
     }
 
