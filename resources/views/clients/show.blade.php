@@ -5,7 +5,7 @@
     @csrf
     <div class="col-md-12">
       <label for="inputName" class="form-label">Nome</label>
-      <input type="text" class="form-control" id="inputName" name="name" required value="{{$client->name}}">
+      <input type="text" class="form-control" id="inputName" name="name" value="{{$client->name}}" required >
       @error('name')
           {{$message}}
       @enderror

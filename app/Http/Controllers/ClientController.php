@@ -56,6 +56,7 @@ class ClientController extends Controller
             'height'=>$request->height,
             'age'=>$request->age,
         ]);
+
         return view('clients.create');
     }
 
@@ -66,9 +67,9 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        $client = DB::select('select * from clients where id = ?',[$id]);
-        return view('clients.show',['client'=>$client]);
+    {   
+        $client = DB::select('select * from clients where id =?',[$id]);
+        return view('clients.show',['client'=>$client[0]]);
     }
 
     /**

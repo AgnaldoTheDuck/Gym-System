@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
@@ -18,7 +19,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = DB::select('select * from employees');
         return view('employees.index',['employees'=>$employees]);
     }
 
@@ -64,8 +65,8 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        $employee = Employee::find($id);
-        return view('employees.show',['employee'=>$employee]);
+        $employee = DB::select('select * from employees where id =  ?',[$id]);
+        return view('employees.show',['employee'=>$employee[0]]);
     }
 
     /**
