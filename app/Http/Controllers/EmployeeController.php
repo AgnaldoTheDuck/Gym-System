@@ -30,7 +30,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $categorys = DB::select('select * from categorys');
+        return view('employees.create',['categorys'=>$categorys]);
     }
 
     /**
@@ -45,16 +46,17 @@ class EmployeeController extends Controller
             'name'=>'required',
             'telephone'=>'required',
             'email'=>'required',
-            'wage'=>'required'
         ]);
         
         Employee::create([
             'name'=>$request->name,
             'telephone'=>$request->telephone,
             'email'=>$request->email,
-            'wage'=>$request->wage,
+            'category_id'=>$request->categoryid,
         ]);
-        return view('employees.create');
+
+        $categorys = DB::select('select * from categorys');
+        return view('employees.create',['categorys'=>$categorys]);
     }
 
     /**

@@ -13,7 +13,6 @@
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Email</th>
-                        <th>Salário</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +22,6 @@
                         <td><a href="{{url('/employees',[$employee->id])}}">{{$employee->name}}</a></td>
                         <td>{{$employee->telephone}}</td>
                         <td>{{$employee->email}}</td>
-                        <td>{{$employee->wage}}</td>
                     </tr>
                     @endif
                     @endforeach

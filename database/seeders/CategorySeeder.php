@@ -19,5 +19,10 @@ class CategorySeeder extends Seeder
             'name' => 'Personal',
             'wage' => 1,
         ]);
+
+        Category::create([
+            'name' => 'ASG',
+            'wage' => 1,
+        ]);
     }
 }
