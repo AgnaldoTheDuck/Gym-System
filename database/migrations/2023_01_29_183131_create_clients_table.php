@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('telephone');
             $table->integer('height');
-            $table->integer('weight');
+            $table->float('weight');
             $table->integer('age');
             $table->boolean('active')->default(0);
             $table->unsignedBigInteger('employee_id');

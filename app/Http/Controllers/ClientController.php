@@ -58,6 +58,7 @@ class ClientController extends Controller
             'age'=>$request->age,
             'employee_id'=>$request->employ,
         ]);
+
         $employees = DB::select('select * from employees where active = 0 and category_id = 1');
         return view('clients.create',['employees'=>$employees]);
     }
@@ -70,8 +71,9 @@ class ClientController extends Controller
      */
     public function show($id)
     {   
+        $employees = DB::select('select * from employees where active = 0 and category_id = 1');
         $client = DB::select('select * from clients where id =?',[$id]);
-        return view('clients.show',['client'=>$client[0]]);
+        return view('clients.show',['client'=>$client[0],'employees'=>$employees]);
     }
 
     /**
@@ -94,7 +96,20 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'name'=>'required',
+            'telephone'=>'required',
+            'weight'=>'required',
+            'height'=>'required',
+            'age'=>'required',
+        ]);
+
+        DB::update('update clients set name=?,telephone=?,weight=?,height=?,age=?,employee_id=? where id ='.$id,
+        [$request->name,$request->telephone,$request->weight,$request->height,$request->age,$request->employ]);
+
+        $clients = DB::select('select * from clients');
+        return view('clients.index',['clients'=>$clients]);
     }
 
     /**
