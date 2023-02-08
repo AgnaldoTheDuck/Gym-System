@@ -58,8 +58,8 @@ class ClientController extends Controller
             'age'=>$request->age,
             'employee_id'=>$request->employ,
         ]);
-
-        return view('clients.create');
+        $employees = DB::select('select * from employees where active = 0 and category_id = 1');
+        return view('clients.create',['employees'=>$employees]);
     }
 
     /**
