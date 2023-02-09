@@ -19,7 +19,7 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = DB::select('select * from clients');
+        $clients = DB::select('select * from vw_indexClient');
         return view('clients.index',['clients'=>$clients]);
     }
 

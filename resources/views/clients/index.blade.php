@@ -15,6 +15,7 @@
                         <th>Altura</th>
                         <th>Peso</th>
                         <th>Idade</th>
+                        <th>Personal</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,7 @@
                         <td>{{$client->height}}</td>
                         <td>{{$client->weight}}</td>
                         <td>{{$client->age}}</td>
+                        <td>{{$client->personal}}</td>
                     </tr>
                     @endif
                     @endforeach
