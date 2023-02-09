@@ -14,7 +14,7 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::unprepared('create function fn_status_employee(employeeId int) returns boolean
+        DB::unprepared('create function fn_statusEmployee(employeeId int) returns boolean
         return (select active from employees where id = employeeId and active = 0)');
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('drop function fn_status_employee');
+        DB::unprepared('drop function fn_statusEmployee');
     }
 };

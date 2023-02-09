@@ -12,8 +12,12 @@ return new class extends Migration
      */
     public function up()
     {
-        DB::unprepared('create function fn_statusClient(clientId int) returns boolean
-        return (select active from clients where id = clientId and active = 0)');
+        DB::unprepared("delimiter /
+        create definer = current_user trigger `tai_clients` after insert on `clients` for each row
+        begin
+        call sp_bonificacao(new.employee_id);
+        end /
+        delimiter ;");
     }
 
     /**
@@ -23,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('drop function fn_statusClient');
+        DB::unprepared('drop trigger tai_clients');
     }
 };

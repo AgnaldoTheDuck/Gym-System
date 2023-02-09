@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
+
 return new class extends Migration
 {
     /**
@@ -14,14 +15,13 @@ return new class extends Migration
     {
         DB::unprepared("
         delimiter /
-        create procedure sp_bonificacao (codigo int, timing int)
-        begin
-            if(timing = 0) then
-                update employees set bonus = bonus + 10 where id = `codigo`;
-            elseif(timing = 1) then
-                update employees set bonus = bonus - 10 where id = `codigo`;
+        create definer = current_user trigger tbi_clients before insert on clients 
+        for each row
+        begin 
+            if (new.employee_id in((select id from employees e where category_id <> 1))) then 
+                signal sqlstate '45000' set message_text = 'Esse funcionário não é um Personal ';
             end if;
-        end / 
+        end /
         delimiter ;");
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        DB::unprepared('drop procedure sp_bonificacao');
+        DB::unprepared('drop trigger tbi_clients');
     }
 };
