@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('active')->default(0);
             $table->float('bonus')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categorys');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }

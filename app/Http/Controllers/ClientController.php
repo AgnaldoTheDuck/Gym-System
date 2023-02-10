@@ -19,8 +19,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = DB::select('select * from vw_indexClient');
-        return view('clients.index',['clients'=>$clients]);
+        $clients = DB::select('select * from clients');
+        $employees = DB::select('select * from employees where category_id = 1');
+        return view('clients.index',['clients'=>$clients,'employees'=>$employees]);
     }
 
     /**
@@ -96,7 +97,6 @@ class ClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'name'=>'required',
             'telephone'=>'required',

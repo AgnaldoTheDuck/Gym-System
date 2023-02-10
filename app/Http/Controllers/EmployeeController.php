@@ -30,8 +30,8 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        $categorys = DB::select('select * from categorys');
-        return view('employees.create',['categorys'=>$categorys]);
+        $categories = DB::select('select * from categories');
+        return view('employees.create',['categories'=>$categories]);
     }
 
     /**
@@ -55,8 +55,8 @@ class EmployeeController extends Controller
             'category_id'=>$request->categoryid,
         ]);
 
-        $categorys = DB::select('select * from categorys');
-        return view('employees.create',['categorys'=>$categorys]);
+        $categories = DB::select('select * from categories');
+        return view('employees.create',['categories'=>$categories]);
     }
 
     /**
@@ -68,7 +68,8 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $employee = DB::select('select * from employees where id =  ?',[$id]);
-        return view('employees.show',['employee'=>$employee[0]]);
+        $categories = DB::select('select * from categories');
+        return view('employees.show',['employee'=>$employee[0],'categories'=>$categories]);
     }
 
     /**
@@ -91,7 +92,17 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name'=>'required',
+            'telephone'=>'required',
+            'email'=>'required',
+        ]);
+
+        DB::update('update employees set name=?,telephone=?,email=?,category_id=? where id ='.$id,
+        [$request->name,$request->telephone,$request->email,$request->categoryid]);
+
+        $employees = DB::select('select * from employees');
+        return view('employees.index',['employees'=>$employees]);
     }
 
     /**

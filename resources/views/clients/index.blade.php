@@ -27,7 +27,7 @@
                         <td>{{$client->height}}</td>
                         <td>{{$client->weight}}</td>
                         <td>{{$client->age}}</td>
-                        <td>{{$client->personal}}</td>
+                        <td>@foreach($employees as $employee)@if($client->employee_id == $employee->id){{$employee->name}}@endif @endforeach</td>
                     </tr>
                     @endif
                     @endforeach

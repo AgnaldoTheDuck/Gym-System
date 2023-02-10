@@ -31,7 +31,7 @@
     <div class="col-md-6">
       <label for="InputEmployee" class="form-label">Categoria</label>
       <select class="form-select form-control" aria-label="Default select example" id="InputEmployee" name="categoryid">
-        @foreach ($categorys as $category)
+        @foreach ($categories as $category)
             <option value="{{$category->id}}">{{$category->name}}</option>
         @endforeach
       </select>

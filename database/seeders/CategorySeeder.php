@@ -16,13 +16,13 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'Personal',
-            'wage' => 1,
+            'name'=>'Personal',
+            'wage'=>1000,
         ]);
 
         Category::create([
-            'name' => 'ASG',
-            'wage' => 1,
+            'name'=>'ASG',
+            'wage'=>800,
         ]);
     }
 }
