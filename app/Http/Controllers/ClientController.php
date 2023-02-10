@@ -105,8 +105,8 @@ class ClientController extends Controller
             'age'=>'required',
         ]);
 
-        DB::update('update clients set name=?,telephone=?,weight=?,height=?,age=?,employee_id=? where id ='.$id,
-        [$request->name,$request->telephone,$request->weight,$request->height,$request->age,$request->employ]);
+        DB::update('update clients set name=?,telephone=?,weight=?,height=?,age=?,employee_id=?, active=? where id ='.$id,
+        [$request->name,$request->telephone,$request->weight,$request->height,$request->age,$request->employ,$request->active]);
 
         $clients = DB::select('select * from clients');
         return view('clients.index',['clients'=>$clients]);

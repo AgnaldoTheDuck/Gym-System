@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $clients = DB::scalar('select count(id) from clients');
+    $clients = DB::scalar('select count(id) from clients where active=0');
     return view('welcome',['clients'=>$clients]);
 });
 

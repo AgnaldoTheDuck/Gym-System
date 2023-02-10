@@ -58,6 +58,14 @@
     </select>
   </div>
 
+  <div class="col-md-12">
+    <label for="InputEmployee" class="form-label">Status do Cliente</label>
+    <select class="form-select form-control" aria-label="Default select example" id="InputEmployee" name="active">
+          <option value="0" selected>Ativo</option>
+          <option value="1">Desativado</option>
+    </select>
+  </div>
+
   <div class="col mt-4">
     <button type="submit" class="btn btn-primary">Atualizar</button>
   </div>

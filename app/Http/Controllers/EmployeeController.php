@@ -98,8 +98,8 @@ class EmployeeController extends Controller
             'email'=>'required',
         ]);
 
-        DB::update('update employees set name=?,telephone=?,email=?,category_id=? where id ='.$id,
-        [$request->name,$request->telephone,$request->email,$request->categoryid]);
+        DB::update('update employees set name=?,telephone=?,email=?,category_id=?,active=? where id ='.$id,
+        [$request->name,$request->telephone,$request->email,$request->categoryid,$request->active]);
 
         $employees = DB::select('select * from employees');
         return view('employees.index',['employees'=>$employees]);
