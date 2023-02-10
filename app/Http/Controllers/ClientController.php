@@ -19,8 +19,8 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $clients = DB::select('select * from clients');
-        $employees = DB::select('select * from employees where category_id = 1');
+        $clients = DB::select('select * from clients where active=0');
+        $employees = DB::select('select * from employees where category_id = 1 and active=0');
         return view('clients.index',['clients'=>$clients,'employees'=>$employees]);
     }
 
@@ -108,8 +108,9 @@ class ClientController extends Controller
         DB::update('update clients set name=?,telephone=?,weight=?,height=?,age=?,employee_id=?, active=? where id ='.$id,
         [$request->name,$request->telephone,$request->weight,$request->height,$request->age,$request->employ,$request->active]);
 
-        $clients = DB::select('select * from clients');
-        return view('clients.index',['clients'=>$clients]);
+        $clients = DB::select('select * from clients where active=0');
+        $employees = DB::select('select * from employees where category_id = 1 and active=0');
+        return view('clients.index',['clients'=>$clients,'employees'=>$employees]);
     }
 
     /**

@@ -17,13 +17,11 @@
                 </thead>
                 <tbody>
                     @foreach ($employees as $employee)
-                    @if ($employee->active == 0)
                     <tr>
                         <td><a href="{{url('/employees',[$employee->id])}}">{{$employee->name}}</a></td>
                         <td>{{$employee->telephone}}</td>
                         <td>{{$employee->email}}</td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>

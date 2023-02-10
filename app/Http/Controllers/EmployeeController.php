@@ -19,7 +19,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = DB::select('select * from employees');
+        $employees = DB::select('select * from employees where active=0');
         return view('employees.index',['employees'=>$employees]);
     }
 
@@ -101,7 +101,7 @@ class EmployeeController extends Controller
         DB::update('update employees set name=?,telephone=?,email=?,category_id=?,active=? where id ='.$id,
         [$request->name,$request->telephone,$request->email,$request->categoryid,$request->active]);
 
-        $employees = DB::select('select * from employees');
+        $employees = DB::select('select * from employees where active=0');
         return view('employees.index',['employees'=>$employees]);
     }
 

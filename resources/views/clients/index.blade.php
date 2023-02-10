@@ -20,7 +20,6 @@
                 </thead>
                 <tbody>
                     @foreach ($clients as $client)
-                    @if($client->active == 0)
                     <tr>
                         <td><a href="{{url('/clients',[$client->id])}}">{{$client->name}}</a></td>
                         <td>{{$client->telephone}}</td>
@@ -29,7 +28,6 @@
                         <td>{{$client->age}}</td>
                         <td>@foreach($employees as $employee)@if($client->employee_id == $employee->id){{$employee->name}}@endif @endforeach</td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
