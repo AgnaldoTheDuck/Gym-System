@@ -49,6 +49,7 @@ class ClientController extends Controller
             'weight'=>'required',
             'height'=>'required',
             'age'=>'required',
+            'employee_id'=>'required'
         ]);
         
         Client::create([
